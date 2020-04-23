@@ -18,4 +18,21 @@ module.exports = {
     lintOnSave: true,
     //是否使用包含运行时编译器的 Vue 构建版本
     runtimeCompiler: false,
+
+    css: {
+
+        extract: process.env.Node_ENV === 'production' ? true : false,
+        sourceMap: false,
+        requireModuleExtension: true,
+        loaderOptions: {
+            css: {
+                // prependData: `@import "./src/style/index.css"`
+                // modules: {
+                //     localIdentName: '[name]-[hash]'
+                // },
+                // localsConvention: 'camelCaseOnly'
+            }
+        }
+
+    }
 }

@@ -1,33 +1,55 @@
 <template>
-  <div class="container">
-    <div class="aside-container">
-      <router-link to="/user">Go to user</router-link>
-    </div>
-    <div class="main-container">
-      <div>tags</div>
-      <div>tags-view</div>
-      <div>page-main</div>
-    </div>
-  </div>
+  <el-container>
+    <!-- 侧边栏容器 -->
+    <el-aside width="180px">
+      aside
+    </el-aside>
+    <el-container>
+      <!-- 顶栏容器 -->
+      <el-header>header</el-header>
+      <!-- 主要区域容器 -->
+      <el-main>main</el-main>
+      <!-- 底栏容器 -->
+      <el-footer>footer</el-footer>
+    </el-container>
+  </el-container>
 </template>
 <script>
-export default {
-  name: "Layout"
-};
+export default {};
 </script>
-<style  scoped>
-.container {
-  width: 300px;
-  height: 500px;
+<style scoped>
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
 }
-.aside-container {
-  width: 70px;
-  height: 100%;
-  background-color: pink;
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
 }
-.main-container {
-  width: calc(100% - 70px);
-  height: 100%;
-  background-color: royalblue;
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
 }
 </style>
