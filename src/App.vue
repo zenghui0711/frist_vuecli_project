@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <!-- <router-link to="/theone" tag="button" replace>theone</router-link>
+    <!-- <router-link to="/theone" tag="span" replace>theone</router-link>
     <br />
-    <router-link to="/thetwo" tag="button" replace>thetwo</router-link>-->
+    <router-link to="/thetwo" tag="button" replace>thetwo</router-link> -->
     <!-- <router-link :to="{path:'/user/'+userid,}" tag="button" replace>user</router-link>
     <button @click="oneclick">theone</button>
     <button @click="towclick">thetwo</button>
@@ -16,7 +16,7 @@
 </template>
 <script>
 export default {
-  name: "app",
+  // name: "app",
   // data(){
   //   return{
   //     userid:'lisi'

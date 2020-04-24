@@ -4,42 +4,71 @@ Vue.use(VueRouter);
 
 //导入路由组件
 import Layout from '../views/layout/index.vue';
-// import theone from '../components/one.vue';
-// import thetwo from '../components/two.vue';
-// import user from '../views/user/list';
 
 //创建VueRouter对象
-const routes = [
-    {
-        path:'',
-        redirect:'/layout'
+const routes = [{
+        path: '',
+        component: Layout,
+        redirect: 'home',
+        mate: {
+            title: "首页"
+        },
+        children: [{
+            path: '/home',
+            component: () => import('../views/home/index.vue'),
+            mate: {
+                title: "首页"
+            },
+        }]
     },
     {
-        path:'/layout',
-        component:Layout
+        path: '/tag',
+        component: Layout,
+        mate: {
+            title: "用户标签管理"
+        },
+        children: [{
+            path: '/taglist',
+            component: () => import('../views/tag/list.vue'),
+            mate: {
+                title: "标签管理"
+            },
+        }, ]
+    },
+    {
+        path: '/user',
+        component: Layout,
+        mate: {
+            title: "用户管理"
+        },
+        children: [{
+                path: '/userlist',
+                component: () => import('../views/user/list.vue'),
+                mate: {
+                    title: "用户信息"
+                },
+            },
+            {
+                path: '/usercase',
+                component: () => import('../views/user/case.vue'),
+                mate: {
+                    title: "上报案件情况"
+                },
+            },
+            {
+                path: '/usersigin',
+                component: () => import('../views/user/sigin.vue'),
+                mate: {
+                    title: "用户签到"
+                },
+            }
+        ]
     }
-    // {
-    //     path:'',
-    //     //重定向
-    //     redirect:'/theone'
-    // },
-    // {
-    //     path: '/theone',
-    //     component: theone
-    // },
-    // {
-    //     path: '/thetwo',
-    //     component: thetwo
-    // },
-    // {
-    //     path:'/user/:userId',
-    //     component:user
-    // }
 ]
 
 //创建路由实例
 const router = new VueRouter({
-    // mode:'history',
+    mode: 'history',
     // linkActiveClass:'active'
     routes: routes,
 });

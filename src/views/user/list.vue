@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>用户信息</div>
-        <div>用户信息222 {{params.userId}}</div>
+        <div>用户信息 {{params.userid}}</div>
     </div>
 </template>
 <script>

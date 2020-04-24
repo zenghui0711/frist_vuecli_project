@@ -1,0 +1,36 @@
+/* 重写element-ui部分样式 */
+
+.el-container{
+    height: 100%;
+}
+
+.el-aside a {
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+.el-menu{
+    border-right: none;
+    background-color: #1f2d3d !important
+}
+
+.el-submenu .el-menu-item{
+    background-color: #1f2d3d !important
+}
+
+
+.el-menu-oneItem:focus,.el-menu-oneItem:hover,
+.el-submenu__title:focus,.el-submenu__title:hover{
+    background-color: rgb(38, 52, 69) !important;
+}
+
+.el-submenu .el-menu-item:focus,.el-submenu .el-menu-item:hover{
+    background-color:#001528 !important;
+}
+
+/* 
+.el-menu-item:focus,.el-menu-item:hover{
+    background-color: rgb(38, 52, 69) !important;
+} */
