@@ -1,16 +1,16 @@
 <template>
     <div>
         <div>用户信息</div>
-        <div>用户信息 {{params.userid}}</div>
+        <div>用户信息 {{query.userid}}</div>
     </div>
 </template>
 <script>
 export default {
     computed:{
-           params(){
+           query(){
                console.log(111,this.$router)
                console.log(222,this.$route)
-               return this.$route.params
+               return this.$route.query
            }
     },
     methods:{

@@ -63,7 +63,38 @@ const routes = [{
                 },
             }
         ]
-    }
+    },
+    {
+        path: '/tag2',
+        component: Layout,
+        mate: {
+            title: "用户标签管理2"
+        },
+        hidden: true,
+        children: [{
+            path: '/taglist',
+            component: () => import('../views/tag/list.vue'),
+            mate: {
+                title: "标签管理"
+            },
+            hidden: true,
+        }, ]
+    },
+    {
+        path: '/test',
+        component: Layout,
+        mate: {
+            title: "测试"
+        },
+        children: [{
+            path: '/testlist',
+            component: () => import('../views/tag/list.vue'),
+            mate: {
+                title: "测试"
+            },
+            hidden: true,
+        }, ]
+    },
 ]
 
 //创建路由实例
