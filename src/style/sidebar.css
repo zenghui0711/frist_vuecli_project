@@ -1,0 +1,36 @@
+#app .sidebar-container {
+    background-color: rgb(48, 65, 86) !important;
+
+    overflow: hidden;
+
+}
+
+.sidebar-container .scrollbar-wrapper {
+    overflow-x: hidden !important;
+}
+
+.sidebar-container .is-horizontal {
+    display: none;
+}
+
+.sidebar-container .el-scrollbar__bar.is-vertical {
+    right: 0px;
+}
+
+
+
+/* \/hideSidebar */
+.hideSidebar .sidebar-container {
+    width: 36px !important;
+}
+
+.hideSidebar .el-menu-oneItem {
+    padding-left: 5px !important;
+    position: relative;
+
+}
+
+.hideSidebar .el-menu-oneItem .el-tooltip,.hideSidebar .el-submenu__title {
+    padding: 0 5px !important;
+  }
+/* \/hideSidebar */

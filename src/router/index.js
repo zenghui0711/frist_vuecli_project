@@ -17,7 +17,8 @@ const routes = [{
             path: '/home',
             component: () => import('../views/home/index.vue'),
             mate: {
-                title: "首页"
+                title: "首页",
+                icon: 's-home'
             },
         }]
     },
@@ -25,13 +26,15 @@ const routes = [{
         path: '/tag',
         component: Layout,
         mate: {
-            title: "用户标签管理"
+            title: "用户标签管理",
+            icon: "price-tag"
         },
         children: [{
             path: '/taglist',
             component: () => import('../views/tag/list.vue'),
             mate: {
-                title: "标签管理"
+                title: "标签管理",
+                icon: "price-tag"
             },
         }, ]
     },
@@ -39,7 +42,8 @@ const routes = [{
         path: '/user',
         component: Layout,
         mate: {
-            title: "用户管理"
+            title: "用户管理",
+            icon: "user"
         },
         children: [{
                 path: '/userlist',
@@ -52,7 +56,7 @@ const routes = [{
                 path: '/usercase',
                 component: () => import('../views/user/case.vue'),
                 mate: {
-                    title: "上报案件情况"
+                    title: "上报情况"
                 },
             },
             {
@@ -65,35 +69,29 @@ const routes = [{
         ]
     },
     {
-        path: '/tag2',
-        component: Layout,
-        mate: {
-            title: "用户标签管理2"
-        },
-        hidden: true,
-        children: [{
-            path: '/taglist',
-            component: () => import('../views/tag/list.vue'),
-            mate: {
-                title: "标签管理"
-            },
-            hidden: true,
-        }, ]
-    },
-    {
         path: '/test',
         component: Layout,
         mate: {
-            title: "测试"
+            title: "测试",
+            onlyOne: true,
         },
         children: [{
-            path: '/testlist',
-            component: () => import('../views/tag/list.vue'),
+            path: '/testpage',
+            component: () => import('../views/test/index.vue'),
             mate: {
-                title: "测试"
+                title: "测试页1",
+                icon: 'tickets'
             },
-            hidden: true,
-        }, ]
+        }]
+    },
+    {
+        path: '/test2',
+        component: () => import('../views/tag/list.vue'),
+        mate: {
+            title: "测试页2",
+            icon: 'tickets'
+        },
+        children: []
     },
 ]
 

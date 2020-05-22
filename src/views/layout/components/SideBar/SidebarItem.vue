@@ -3,17 +3,33 @@
     <template
       v-if="
         hasOneShowingChild(item.children, item) &&
-          (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-          !item.alwaysShow
+          (!onlyOneChild.children || onlyOneChild.noShowingChildren) 
       "
     >
       <router-link :to="{path:onlyOneChild.path}">
         <el-menu-item :index="onlyOneChild.path" :class="'el-menu-oneItem'">
-          <i class="el-icon-s-home"></i>
+          <i :class="'el-icon-'+onlyOneChild.mate.icon"></i>
           <span slot="title">{{onlyOneChild.mate.title}}</span>
         </el-menu-item>
       </router-link>
     </template>
+    <el-submenu v-else :index="item.path">
+      <template slot="title">
+        <i :class="'el-icon-'+item.mate.icon"></i>
+        <span slot="title">{{item.mate.title}}</span>
+      </template>
+      <template v-for="child in item.children">
+        <template v-if="!child.hidden">
+          <router-link :to="child.path">
+            <el-menu-item :index="child.path">
+              <!-- {{child.mate.title}} -->
+              <i :class="'el-icon-'+child.mate.icon"></i>
+              <span slot="title">{{child.mate.title}}</span>
+            </el-menu-item>
+          </router-link>
+        </template>
+      </template>
+    </el-submenu>
   </div>
 </template>
 <script>
@@ -37,46 +53,33 @@ export default {
       default: ""
     }
   },
-  mounted() {
-    // console.log(this.item);
-    // var mm = this.hasOneShowingChild(this.item.children, this.item);
-    // console.log("mm", mm);
-
-    // if (
-    //   mm &&
-    //   (!this.onlyOneChild.children || this.onlyOneChild.noShowingChildren)
-    // ) {
-    //   console.log("onlyOneChild", this.onlyOneChild.value);
-    //   console.log("onlyOneChild2", !this.onlyOneChild.children);
-    // }
-  },
+  mounted() {},
   methods: {
     hasOneShowingChild(children, parent) {
       var showingChildren = children.filter(item => {
         if (item.hidden) {
           return false;
         } else {
-          // Temp set(will be used if only has one showing child)
           this.onlyOneChild = item;
           return true;
         }
       });
-      console.log("showingChildren", showingChildren);
+      // console.log("showingChildren", showingChildren);
 
-      if (showingChildren.length === 1 && parent.path == "") {
+      if (
+        showingChildren.length === 1 &&
+        (parent.path == "" || parent.mate.onlyOne)
+      ) {
         return true;
       }
       if (showingChildren.length === 0) {
         this.onlyOneChild = {
           ...parent,
-          path: "",
           noShowingChildren: true
         };
-
         return true;
       }
-      console.log("this.onlyOneChild", this.onlyOneChild);
-
+      // console.log("this.onlyOneChild", this.onlyOneChild);
       return false;
     }
   }

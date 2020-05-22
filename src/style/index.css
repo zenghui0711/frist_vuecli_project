@@ -1,3 +1,7 @@
+@import '../style/element-ui.css';
+@import '../style/sidebar.css';
+
+
 body {
     height: 100%;
     margin: 0;
@@ -19,30 +23,27 @@ a:hover {
     height: 100%;
 }
 
-.app-wrapper{
+.app-wrapper {
     height: 100%;
     display: flex;
 }
-#app .sidebar-container .scrollbar-wrapper{
-    overflow-x: hidden !important;
 
-}
-.sidebar-container {
-    background-color: rgb(48, 65, 86) !important;
-}
-.main-container {
+
+#app .main-container {
     width: 100%;
 }
 
-.tags-view {
+#app .tags-view {
     border-bottom: 1px solid #d8dce5;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
     padding: 4px 0;
 }
 
-/* .header-view {
-    width: 100%;
-}
- */
 
+#app .footer-container {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+}
 
