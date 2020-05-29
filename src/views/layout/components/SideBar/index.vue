@@ -3,11 +3,11 @@
     <el-menu
       :show-timeout="200"
       :default-active="$route.path"
-      :collapse="isCollapse"
+      :collapse="sidebar.opened"
       mode="vertical"
-      class="el-menu-vertical"
-      background-color="rgb(48, 65, 86)"
-      text-color="#fff"
+      background-color="#304156"
+      text-color="#bfcbd9"
+      active-text-color="#409EFF"
     >
       <sidebar-item
         v-for="route in permission_routers"
@@ -23,16 +23,13 @@ import SidebarItem from "./SidebarItem";
 
 export default {
   components: { SidebarItem },
-  props: {
-    isCollapse: {
-      type: Boolean,
-      default: false
-    }
-  },
   computed: {
     permission_routers() {
       console.log(this.$router.options.routes);
       return this.$router.options.routes;
+    },
+    sidebar() {
+      return { opened: this.$parent.isCollapse };
     }
   }
 };

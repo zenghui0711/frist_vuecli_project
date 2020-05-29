@@ -1,12 +1,51 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
-Vue.use(VueRouter);
-
 //导入路由组件
 import Layout from '../views/layout/index.vue';
+Vue.use(VueRouter);
 
 //创建VueRouter对象
-const routes = [{
+export const constantRouterMap = [
+{
+    path:'/',
+    name:'home',
+    component: () => import("../views/home/index.vue"),
+},
+{
+    path:'/login',
+    name:'login',
+    component: () => import("../views/login/index.vue"),
+},
+{
+    path:'/taglist',
+    name:'taglist',
+    component: () => import("../views/tag/list.vue"),
+},
+
+    // {
+    //     path: '/login',
+    //     name: "Login",
+    //     component: () => import("../views/login/index.vue"),
+    //     hidden: true
+    // },
+    // {
+    //     path: "",
+    //     component: Layout,
+    //     redirect: 'home',
+    //     children: [{
+    //         path: '/home',
+    //         component: () => import('../views/home/index.vue'),
+    //         mate: {
+    //             title: "首页",
+    //             icon: 's-home',
+    //             noCache: true
+    //         },
+    //     }]
+    // }
+]
+
+
+export const routes = [{
         path: '',
         component: Layout,
         redirect: 'home',
@@ -68,40 +107,38 @@ const routes = [{
             }
         ]
     },
-    {
-        path: '/test',
-        component: Layout,
-        mate: {
-            title: "测试",
-            onlyOne: true,
-        },
-        children: [{
-            path: '/testpage',
-            component: () => import('../views/test/index.vue'),
-            mate: {
-                title: "测试页1",
-                icon: 'tickets'
-            },
-        }]
-    },
-    {
-        path: '/test2',
-        component: () => import('../views/tag/list.vue'),
-        mate: {
-            title: "测试页2",
-            icon: 'tickets'
-        },
-        children: []
-    },
+    // {
+    //     path: '/test',
+    //     component: Layout,
+    //     mate: {
+    //         title: "测试",
+    //         icon: 'tickets',
+    //         onlyOne: true,
+    //     },
+    //     children: [{
+    //         path: '/testpage',
+    //         component: () => import('../views/test/index.vue'),
+    //         mate: {
+    //             title: "测试页1",
+    //             icon: 'tickets'
+    //         },
+    //     }]
+    // },
+    // {
+    //     path: '/test2',
+    //     component: () => import('../views/tag/list.vue'),
+    //     mate: {
+    //         title: "测试页2",
+    //         icon: 'tickets'
+    //     },
+    //     children: []
+    // },
 ]
 
-//创建路由实例
-const router = new VueRouter({
-    mode: 'history',
+//创建并导出路由实例
+export default new VueRouter({
+    //mode: 'history',
     // linkActiveClass:'active'
-    routes: routes,
+    // routes: routes,
+    routes: constantRouterMap,
 });
-
-
-//导出
-export default router;

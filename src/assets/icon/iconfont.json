@@ -1,0 +1,16 @@
+{
+  "id": "1850876",
+  "name": "上海三高",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8224812",
+      "name": "眼睛_闭",
+      "font_class": "yanjing_bi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    }
+  ]
+}

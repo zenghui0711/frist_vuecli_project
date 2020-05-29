@@ -22,7 +22,6 @@
         <template v-if="!child.hidden">
           <router-link :to="child.path">
             <el-menu-item :index="child.path">
-              <!-- {{child.mate.title}} -->
               <i :class="'el-icon-'+child.mate.icon"></i>
               <span slot="title">{{child.mate.title}}</span>
             </el-menu-item>

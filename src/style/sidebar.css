@@ -1,21 +1,78 @@
+.main-container {
+    min-height: 100%;
+    transition: margin-left .28s;
+    position: relative;
+}
+
 #app .sidebar-container {
     background-color: rgb(48, 65, 86) !important;
-
+    transition: width 0.28s;
+    height: 100%;
+    position: fixed;
+    font-size: 0px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
     overflow: hidden;
+}
 
+.sidebar-container .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
 .sidebar-container .scrollbar-wrapper {
     overflow-x: hidden !important;
 }
 
-.sidebar-container .is-horizontal {
-    display: none;
+.sidebar-container .scrollbar-wrapper .el-scrollbar__view {
+    height: 100%;
 }
 
 .sidebar-container .el-scrollbar__bar.is-vertical {
     right: 0px;
 }
+
+.sidebar-container .is-horizontal {
+    display: none;
+}
+
+.el-menu {
+    border: none;
+    height: 100%;
+}
+
+.sidebar-container .el-submenu .el-menu-item {
+    background-color: #1f2d3d !important;
+}
+
+.el-menu-oneItem:focus,
+.el-menu-oneItem:hover,
+.el-submenu__title:focus,
+.el-submenu__title:hover,
+.el-menu--popup .el-menu-item:focus,
+.el-menu--popup .el-menu-item:hover {
+    background-color: rgb(38, 52, 69) !important;
+}
+
+.el-submenu .el-menu-item:focus,
+.el-submenu .el-menu-item:hover {
+    background-color: #001528 !important;
+}
+
+
+/* \/openSidebar */
+.openSidebar .sidebar-container {
+    width: 180px;
+}
+
+.openSidebar .main-container {
+    width: calc(100% - 180px);
+    margin-left: 180px;
+}
+
+/* \/openSidebar */
+
 
 
 
@@ -24,13 +81,25 @@
     width: 36px !important;
 }
 
+.hideSidebar .main-container {
+    width: calc(100% - 36px);
+    margin-left: 36px;
+}
+
 .hideSidebar .el-menu-oneItem {
     padding-left: 5px !important;
     position: relative;
 
 }
 
-.hideSidebar .el-menu-oneItem .el-tooltip,.hideSidebar .el-submenu__title {
-    padding: 0 5px !important;
-  }
+.hideSidebar .el-menu-oneItem .el-tooltip,
+.hideSidebar .el-submenu__title {
+    padding: 0 7px !important;
+}
+
+.el-tooltip__popper,
+.el-menu--vertical {
+    left: 34px !important;
+}
+
 /* \/hideSidebar */
