@@ -26,9 +26,20 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
     document.title = "上海三高";
     if (getToken()) {
-        next()
+        /* 有 token */
+        if (to.path === '/login') {
+            console.log('有token111')
+            next({
+                path: '/'
+            })
+            NProgress.done();
+        } else {
+            console.log('有token222')
+            next()
+        }
     } else {
         /* 无 token */
+        console.log('无token')
         if (to.path === '/login') { //解决跳出循环的关键
             next()
         } else {

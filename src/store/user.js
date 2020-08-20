@@ -3,68 +3,44 @@ import {
     setToken,
     removeToken
 } from "@/utils/auth";
-const state = {
-    user: "",
-    status: "",
-    code: "",
-    token: getToken(),
-    name: "",
-    avatar: "",
-    introduction: "",
-    roles: [],
-    setting: {
-        articlePlatform: [],
-    },
-};
-const getters = {
-    token: (state) => state.token,
-    avatar: (state) => state.avatar,
-    name: (state) => state.name,
-    introduction: (state) => state.introduction,
-    status: (state) => state.status,
-    roles: (state) => state.roles,
-    setting: (state) => state.setting,
+
+import {
+    testApi,
+    loginIn,
+    loginUp
+
+} from "@/api/login";
+
+
+const state={
+
 }
-const mutations = {
-    SET_CODE: (state, code) => {
-        state.code = code;
-    },
-    SET_TOKEN: (state, token) => {
-        state.token = token;
-    },
-    SET_INTRODUCTION: (state, introduction) => {
-        state.introduction = introduction;
-    },
-    SET_SETTING: (state, setting) => {
-        state.setting = setting;
-    },
-    SET_STATUS: (state, status) => {
-        state.status = status;
-    },
-    SET_NAME: (state, name) => {
-        state.name = name;
-    },
-    SET_AVATAR: (state, avatar) => {
-        state.avatar = avatar;
-    },
-    SET_ROLES: (state, roles) => {
-        state.roles = roles;
-    },
+const mutations={
+    ADD_TOKEN(state,TOKEN){
+        setToken(TOKEN)
+    }
 }
-const actions = {
-    LoginByUsername({commit}){
 
-    },
-    GetUserInfo(){
+const actions={
+    LoginByUserName({commit},userInfo){
+        return new Promise((resolve, reject) => {
+           
+            loginIn(userInfo).then((result) => {
+                console.log('user then.result', result)
+                commit('ADD_TOKEN',result.data.token)
 
-    },
-    LogOut(){
+                resolve();
+            }).catch((err) => {
+                console.log('user catch.err', err)
+                reject(error);
+            });
 
+        })
     }
 }
 export default {
+    namespaced:true,//使其成为带命名空间的模块
     state,
-    getters,
     mutations,
     actions,
 }

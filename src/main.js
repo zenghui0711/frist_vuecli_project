@@ -8,11 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './style/index.css'
 import VueComposition from "@vue/composition-api"; //vue3.0 的使用，可以不用
 import './permission' //路由拦截
-
+import './utils/mockdata'
 
 Vue.use(ElementUI);
 Vue.use(VueComposition);
-Vue.config.productionTip = false
+Vue.config.productionTip = false;//阻止启动生产消息 
 
 new Vue({
   router,

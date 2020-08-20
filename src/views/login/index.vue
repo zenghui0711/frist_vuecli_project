@@ -3,6 +3,7 @@
     <el-form
       ref="loginForm"
       :model="loginForm"
+      :rules="loginRules"
       class="login-form"
       auto-complete="on"
       label-position="left"
@@ -35,6 +36,7 @@
             :type="passwordType"
             tabindex="2"
             auto-complete="on"
+            @keyup.enter.native="handleLogin"
           />
           <i
             :class="passwordType==='password' ?  'sh3h-icon-close__view':'el-icon-view' "
@@ -42,11 +44,13 @@
             @click="isShowPass()"
           ></i>
         </el-form-item>
+
+        <el-form-item prop="verification" style="display:none"></el-form-item>
       </div>
       <div class="button-container">
         <el-form-item>
           <el-button type="primary" @click="resetForm('ruleForm')">重置</el-button>
-          <el-button type="primary" @click="submitForm('ruleForm')">登入</el-button>
+          <el-button :loading="loading" type="primary" @click.native.prevent="handleLogin">登入</el-button>
         </el-form-item>
       </div>
     </el-form>
@@ -56,16 +60,37 @@
 <script>
 import { reactive, ref, watch } from "@vue/composition-api";
 import "../../assets/icon/iconfont.css";
+
 export default {
-  setup(props, context) {
-    console.log("props", props);
-    console.log("context", context);
-    const wHeight = document.documentElement.clientHeight + "px";
+  setup(props, { refs, root }) {
     const loginForm = reactive({
       username: "admin",
-      password: "111111"
+      password: "123456"
     });
 
+    // 自定义账号密码校验规则
+    var validatename = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("输入正确的用户名"));
+      } else {
+        callback();
+      }
+    };
+    var validatePass = (rule, value, callback) => {
+      if (value.length < 6) {
+        callback(new Error("密码长度不能少于6位"));
+      } else if (value.length > 12) {
+        callback(new Error("密码长度不能多于12位"));
+      } else {
+        callback();
+      }
+    };
+    const loginRules = reactive({
+      username: [{ validator: validatename, trigger: "blur" }],
+      password: [{ validator: validatePass, trigger: "blur" }]
+    });
+
+    //控制是否显示密码
     const passwordType = ref("password");
     const isShowPass = () => {
       if (passwordType.value === "password") {
@@ -73,12 +98,59 @@ export default {
       } else {
         passwordType.value = "password";
       }
+       refs.password.focus();
     };
+
+    //执行登陆
+    const wHeight = document.documentElement.clientHeight + "px";
+    const loading = ref(false);
+    const redirect = ref(undefined);
+    const handleLogin = () => {
+      console.log("refs", refs);
+      refs.loginForm.validate(valid => {
+        console.log("valid", valid);
+        if (valid) {
+          console.log("root", root);
+          loading.value = true;
+          // root.$store.dispatch("user/LoginByUsername", loginForm);
+          console.log(0);
+          root.$store
+            .dispatch("user/LoginByUserName", loginForm)
+            .then(res => {
+              console.log("then", res);
+              console.log('redirect.value ',redirect.value );
+              console.log('root ',root.$router );
+
+              //root.$router.push({ path:(route.query && route.query.redirect)||"/"})
+              root.$router.push({ path:(redirect.value)||"/"})
+              loading.value=false;
+            }).catch(()=>{
+              loading.value=false;
+            });
+
+          console.log("stroe2222222", root.$store.state.count);
+        } else {
+          return false
+        }
+      });
+    };
+
+    watch(
+      () => root.$route,
+      route => {
+        console.log('watch.route',route);
+        redirect.value = route.query && route.query.redirect;
+      }
+    );
     return {
       wHeight,
       passwordType,
+      loading,
       loginForm,
-      isShowPass
+      loginRules,
+      isShowPass,
+      redirect,
+      handleLogin
     };
   }
 };

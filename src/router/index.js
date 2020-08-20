@@ -6,42 +6,72 @@ Vue.use(VueRouter);
 
 //创建VueRouter对象
 export const constantRouterMap = [
-{
-    path:'/',
-    name:'home',
-    component: () => import("../views/home/index.vue"),
-},
-{
-    path:'/login',
-    name:'login',
-    component: () => import("../views/login/index.vue"),
-},
-{
-    path:'/taglist',
-    name:'taglist',
-    component: () => import("../views/tag/list.vue"),
-},
-
-    // {
-    //     path: '/login',
-    //     name: "Login",
-    //     component: () => import("../views/login/index.vue"),
-    //     hidden: true
-    // },
-    // {
-    //     path: "",
-    //     component: Layout,
-    //     redirect: 'home',
-    //     children: [{
-    //         path: '/home',
-    //         component: () => import('../views/home/index.vue'),
-    //         mate: {
-    //             title: "首页",
-    //             icon: 's-home',
-    //             noCache: true
-    //         },
-    //     }]
-    // }
+    {
+        path: '/login',
+        name: "Login",
+        component: () => import("../views/login/index.vue"),
+        hidden: true
+    },
+    {
+        path: "",
+        component: Layout,
+        redirect: 'home',
+        children: [{
+            path: '/home',
+            component: () => import('../views/home/index.vue'),
+            mate: {
+                title: "首页",
+                icon: 's-home',
+                noCache: true
+            },
+        }]
+    },
+    {
+        path: '/tag',
+        component: Layout,
+        mate: {
+            title: "用户标签管理",
+            icon: "price-tag"
+        },
+        children: [{
+            path: '/taglist',
+            component: () => import('../views/tag/list.vue'),
+            mate: {
+                title: "标签管理",
+                icon: "price-tag"
+            },
+        }, ]
+    },
+    {
+        path: '/user',
+        component: Layout,
+        mate: {
+            title: "用户管理",
+            icon: "user"
+        },
+        children: [{
+                path: '/userlist',
+                component: () => import('../views/user/list.vue'),
+                mate: {
+                    title: "用户信息"
+                },
+            },
+            {
+                path: '/usercase',
+                component: () => import('../views/user/case.vue'),
+                mate: {
+                    title: "上报情况"
+                },
+            },
+            {
+                path: '/usersigin',
+                component: () => import('../views/user/sigin.vue'),
+                mate: {
+                    title: "用户签到"
+                },
+            }
+        ]
+    },
 ]
 
 
